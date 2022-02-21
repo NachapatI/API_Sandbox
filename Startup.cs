@@ -9,9 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using CmdAPI.Model;
+using API_Sandbox.Model;
 
-namespace CmdAPI
+namespace API_Sandbox
 {
     public class Startup
     {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace CmdAPI.Model
+namespace API_Sandbox.Model
 {
     public class CommandContext: DbContext
     {

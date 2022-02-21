@@ -1,4 +1,4 @@
-namespace CmdAPI.Model
+namespace API_Sandbox.Model
 {
     public class Commands
     {

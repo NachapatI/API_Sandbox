@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CmdAPI.Controllers
+namespace API_Sandbox.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
