@@ -1,0 +1,14 @@
+obj/CmdAPI.csproj.nuget.dgspec.json
+obj/CmdAPI.csproj.nuget.g.props
+obj/CmdAPI.csproj.nuget.g.targets
+obj/project.assets.json
+obj/project.nuget.cache
+obj/Debug/netcoreapp2.1/.NETCoreApp,Version=v2.1.AssemblyAttributes.cs
+obj/Debug/netcoreapp2.1/CmdAPI.AssemblyInfo.cs
+obj/Debug/netcoreapp2.1/CmdAPI.AssemblyInfoInputs.cache
+obj/Debug/netcoreapp2.1/CmdAPI.assets.cache
+obj/Debug/netcoreapp2.1/CmdAPI.csproj.AssemblyReference.cache
+obj/Debug/netcoreapp2.1/CmdAPI.GeneratedMSBuildEditorConfig.editorconfig
+obj/Debug/netcoreapp2.1/CmdAPI.RazorAssemblyInfo.cache
+obj/Debug/netcoreapp2.1/CmdAPI.RazorAssemblyInfo.cs
+obj/Debug/netcoreapp2.1/project.razor.json
