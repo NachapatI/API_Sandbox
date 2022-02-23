@@ -29,13 +29,20 @@ namespace API_Sandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CommandContext>(opt => opt.UseSqlServer(Configuration["Data:CommandAPIConnection:ConnectionString"]));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllersWithViews();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)//, IWebHostEnvironment env
         {
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseRouting();
+            app.UseEndpoints(endpoints => 
+            {
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute("default","{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
