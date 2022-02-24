@@ -1,6 +1,11 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
+using System.Net.Http.Headers;
 using API_Sandbox.Model;
+
 
 namespace API_Sandbox.Controllers;
 
@@ -14,9 +19,44 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    List<ReceiveData> lstResult = new List<ReceiveData>();
+
+    // public IActionResult Index()
+     public async Task<IActionResult> Index()
     {
-        return View();
+        string dt = DateTime.Now.ToString("yyyy-MM-dd",CultureInfo.InvariantCulture);
+        string url = @"https://apigw1.bot.or.th";
+        string apiUrl = @"/bot/public/Stat-ReferenceRate/v2/DAILY_REF_RATE/";
+        apiUrl += String.Format("?start_period={0}&end_period={0}",dt);
+        
+        Console.WriteLine("-"+url);
+        using( var client = new HttpClient())
+        {
+            client.BaseAddress = new System.Uri(url);
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Add("X-IBM-Client-Id", "9392a5e0-7969-485b-a7c7-46d3a04e8f3e");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage res = await client.GetAsync(apiUrl);
+
+            Console.WriteLine("-RequestAPI");
+            if(res.IsSuccessStatusCode)
+            {
+                var resp = res.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("-Get resp:"+resp.ToString());
+                lstResult.Add(new ReceiveData() {Key = lstResult.Count, Value = resp});
+                //  = JsonConvert.DeserializeObject<JObject>(resp);
+            }
+            else
+            {
+                lstResult = new List<ReceiveData>();
+                ModelState.AddModelError(string.Empty, "Get Data Failure.");
+            }
+
+            return View(lstResult);
+
+        }
+
+        // return View();
     }
 
     public IActionResult Privacy()
