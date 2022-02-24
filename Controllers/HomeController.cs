@@ -34,7 +34,7 @@ public class HomeController : Controller
         {
             client.BaseAddress = new System.Uri(url);
             client.DefaultRequestHeaders.Clear();
-            client.DefaultRequestHeaders.Add("X-IBM-Client-Id", "9392a5e0-7969-485b-a7c7-46d3a04e8f3e");
+            client.DefaultRequestHeaders.Add("X-IBM-Client-Id", "CONFIG_ID");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage res = await client.GetAsync(apiUrl);
 
