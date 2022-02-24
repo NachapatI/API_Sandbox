@@ -29,7 +29,7 @@ public class HomeController : Controller
         string apiUrl = @"/bot/public/Stat-ReferenceRate/v2/DAILY_REF_RATE/";
         apiUrl += String.Format("?start_period={0}&end_period={0}",dt);
         
-        Console.WriteLine("-"+url);
+        // Console.WriteLine("-"+url);
         using( var client = new HttpClient())
         {
             client.BaseAddress = new System.Uri(url);
@@ -38,12 +38,13 @@ public class HomeController : Controller
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage res = await client.GetAsync(apiUrl);
 
-            Console.WriteLine("-RequestAPI");
+            // Console.WriteLine("-RequestAPI");
             if(res.IsSuccessStatusCode)
             {
                 var resp = res.Content.ReadAsStringAsync().Result;
-                Console.WriteLine("-Get resp:"+resp.ToString());
-                lstResult.Add(new ReceiveData() {Key = lstResult.Count, Value = resp});
+                // Console.WriteLine("-Get resp:"+resp.ToString());
+                lstResult.Add(new ReceiveData() {Key = lstResult.Count, 
+                Value = JObject.Parse(resp.ToString())});
                 //  = JsonConvert.DeserializeObject<JObject>(resp);
             }
             else
